@@ -1,0 +1,29 @@
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+// add hostname and portnumber to request headers
+
+const hostname = '127.0.0.1';
+const port = 3000;
+
+// config bodyparsr
+
+const jsonParser = bodyParser.json();
+const urlEncodedParser = bodyParser.urlencoded({extended : false});
+app.use(urlEncodedParser);
+app.use(jsonParser);
+
+// confign cors 
+
+app.use(cors());
+
+app.get('/', (request, response)=>{
+
+    response.send('<h4>welcome to express Js Server</h4>');
+});
+
+app.listen(hostname, port, () => {
+    console.log( 'Server started at http://${hostname}:${port}');
+});
